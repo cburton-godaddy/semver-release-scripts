@@ -1,0 +1,19 @@
+{
+  "name": "semver-release-scripts",
+  "version": "0.0.1",
+  "description": "Semver based release scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connorjburton/semver-release-scripts.git"
+  },
+  "author": "Connor Burton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connorjburton/semver-release-scripts/issues"
+  },
+  "homepage": "https://github.com/connorjburton/semver-release-scripts#readme"
+}
