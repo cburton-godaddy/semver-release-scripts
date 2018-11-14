@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const semver = require('semver');
 
 class Folders {
     /**
@@ -12,6 +13,10 @@ class Folders {
         this.verbose = verbose;
     }
     
+    /**
+     * 
+     * @returns {Promise}
+     */
     readDirectory() {
         return new Promise((resolve, reject) => {
             fs.readdir(path.resolve(this.source), (err, filenames) => {
@@ -27,6 +32,7 @@ class Folders {
     /**
      * 
      * @param {array} filenames 
+     * @returns {Promise}
      */
     filterFilenames(filenames) {
         return new Promise((resolve, reject) => {
@@ -34,7 +40,11 @@ class Folders {
             filenames.forEach((file, index) => {
                 fs.stat(path.resolve(this.source, file), (err, stats) => {
                     if (stats.isDirectory()) {
-                        folders.push(file);
+                        if (semver.valid(file)) {
+                            folders.push(file);
+                        } else if (this.verbose) {
+                            console.info(`Ignoring ${this.source}${path.sep}${file} as it is not a valid semver`);
+                        }
                     }
 
                     if (index === filenames.length - 1) {
@@ -48,6 +58,7 @@ class Folders {
     /**
      * 
      * @param {array} directories 
+     * @returns {Promise}
      */
     filterDirectoriesWithIndex(directories) {
         return new Promise((resolve, reject) => {
@@ -68,6 +79,9 @@ class Folders {
         });
     }
 
+    /**
+     * @returns {Promise}
+     */
     get() {
         return this.readDirectory()
             .then(this.filterFilenames.bind(this))
