@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/connorjburton/semver-release-scripts/issues"
   },
-  "homepage": "https://github.com/connorjburton/semver-release-scripts#readme"
+  "homepage": "https://github.com/connorjburton/semver-release-scripts#readme",
+  "dependencies": {
+    "semver": "^5.6.0"
+  }
 }
