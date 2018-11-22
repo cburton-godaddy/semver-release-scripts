@@ -22,6 +22,7 @@ class Folders {
             fs.readdir(path.resolve(this.source), (err, filenames) => {
                 if (err) {
                     reject(err);
+                    return;
                 }
     
                 resolve(filenames);
