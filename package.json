@@ -1,6 +1,6 @@
 {
   "name": "semver-release-scripts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Semver based release scripts",
   "main": "index.js",
   "scripts": {
