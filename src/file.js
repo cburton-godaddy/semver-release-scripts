@@ -12,27 +12,27 @@ class File {
         });
     }
 
-    setup(step, results) {
+    setup(step, method, results) {
         if (!step in this.versionMigration || typeof this.versionMigration[step] !== 'function') {
             return Promise.resolve();
         }
 
-        return this.versionMigration[step](this.version, results);
+        return this.versionMigration[step](this.version, method, results);
     }
 
     up() {
-        this.setup('before').then(() => {
+        this.setup('before', 'up').then(() => {
             return this.versionMigration.up();
         }).then(results => {
-            return this.setup('after', results);
+            return this.setup('after', 'up', results);
         });
     }
 
     down() {
-        this.setup('before').then(() => {
+        this.setup('before', 'down').then(() => {
             return this.versionMigration.down();
         }).then(results => {
-            return this.setup('after', results);
+            return this.setup('after', 'down', results);
         });
     }
 }
