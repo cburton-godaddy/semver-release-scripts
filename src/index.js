@@ -29,7 +29,7 @@ class SemverReleaseScripts {
             throw new Error('to is not a valid semver in SemverReleaseScripts.run');
         }
 
-        this.folders.get()
+        return this.folders.get()
             .then(folders => {
                 const toFolder = folders.find(folder => semver.eq(folder, to));
                 if (!toFolder) {
@@ -38,7 +38,7 @@ class SemverReleaseScripts {
 
                 const file = new File(path.resolve(this.source, toFolder), to);
 
-                file[method]();
+                return file[method]();
             }).catch(err => {
                 console.error(err);
             });
