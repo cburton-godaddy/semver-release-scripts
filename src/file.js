@@ -21,7 +21,7 @@ class File {
     }
 
     up() {
-        this.setup('before', 'up').then(() => {
+        return this.setup('before', 'up').then(() => {
             return this.versionMigration.up();
         }).then(results => {
             return this.setup('after', 'up', results);
@@ -29,7 +29,7 @@ class File {
     }
 
     down() {
-        this.setup('before', 'down').then(() => {
+        return this.setup('before', 'down').then(() => {
             return this.versionMigration.down();
         }).then(results => {
             return this.setup('after', 'down', results);
