@@ -18,9 +18,9 @@ class SemverReleaseScripts {
      * 
      * @param {string} method
      * @param {string} to 
-     * @param {string} [from]
+     * @param {object} options
      */
-    run(method, to, from) {
+    run(method, to, options) {
         if (!to) {
             throw new Error('to not defined in SemverReleaseScripts.run');
         }
@@ -36,7 +36,7 @@ class SemverReleaseScripts {
                     throw new Error(`Upgrade folder for ${to} does not exist`);
                 }
 
-                const file = new File(path.resolve(this.source, toFolder), to);
+                const file = new File(path.resolve(this.source, toFolder), to, options);
 
                 return file[method]();
             }).catch(err => {
