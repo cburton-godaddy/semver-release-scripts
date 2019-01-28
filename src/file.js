@@ -1,9 +1,9 @@
 class File {
-    constructor(path, version) {
+    constructor(path, version, options) {
         const source = {};
         source['path'] = require(path);
         this.version = version;
-        this.versionMigration = new source['path']();
+        this.versionMigration = new source['path'](options);
 
         ['up', 'down'].forEach(method => {
             if (!(method in this.versionMigration)) {
