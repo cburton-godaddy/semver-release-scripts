@@ -39,8 +39,6 @@ class SemverReleaseScripts {
                 const file = new File(path.resolve(this.source, toFolder), to, options);
 
                 return file[method]();
-            }).catch(err => {
-                console.error(err);
             });
     }
 };
