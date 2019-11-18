@@ -1,10 +1,10 @@
 {
   "name": "semver-release-scripts",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Semver based release scripts",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jest tests"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/connorjburton/semver-release-scripts#readme",
   "dependencies": {
-    "semver": "^5.6.0"
+    "semver": "^6.3.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "mock-fs": "^4.10.3"
   }
 }

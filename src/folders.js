@@ -36,7 +36,7 @@ class Folders {
      * @returns {Promise}
      */
     filterFilenames(filenames) {
-        const promises = filenames.map((file, index) => {
+        const promises = filenames.map(file => {
             return new Promise((resolve, reject) => {
                 fs.stat(path.resolve(this.source, file), (err, stats) => {
                     if (!semver.valid(file) || !stats.isDirectory()) {
@@ -62,7 +62,7 @@ class Folders {
      * @returns {Promise}
      */
     filterDirectoriesWithIndex(directories) {
-        const promises = directories.filter(Boolean).map((dir, index) => {
+        const promises = directories.filter(Boolean).map(dir => {
             return new Promise((resolve, reject) => {
                 fs.access(path.resolve(this.source, dir, 'index.js'), fs.constants.R_OK, err => {
                     if (err) {
@@ -79,7 +79,7 @@ class Folders {
             });
         });
 
-        return Promise.all(promises);
+        return Promise.all(promises).then(dirs => Promise.resolve(dirs.filter(Boolean)));
     }
 
     /**
